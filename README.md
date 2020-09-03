@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+### `About the project`
+
+  The project is a Todo List in which you have two prompts(questions), the first being necessary and the second being an optional one meant to make the response to the first question much clearer. The first prompt is "What task would you like to add?" and the second prompt is "Details for the task". 
+  After these two are filled out you must click the "Add" button to add the new task onto the list. After this is done the list item will be shown along with the two default tasks "Sleep" and "Eat". Besides adding tasks the tasks have several states that they can have such as being completed which is displayed with the checkbox being clicked and tasks having a priority state which is enabled by buttons inside the task. The tasks have inside a delete button as well. 
+  With this todo web app there are also 2 filter buttons, one which shows only tasks with the completed status, the other button shows only tasks with the priority status and then there is one final button that shows gets rid of the filter that is being displayed and shows all the tasks.
+
+
 ## Available Scripts
 
 In the project directory, you can run:
