@@ -1,13 +1,89 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+button, label, p, #listItemToAdd{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-radius: 8px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#add-btn{
+  border-radius: 8px;
+}
+
+#listItemToAdd, #listItemDetailsToAdd{
+  outline: none;
+  border-radius: 8px 8px;
+  margin-right: 10px;
+}
+
+#listItemToAddSection{
+  margin-left: 100px;
+}
+#listItemDetailsToAdd{
+  width:50%;
+}
+
+#subheading{
+  color: #7E7DFF;
+}
+.todoApp{
+  background-color: azure;
+  border-radius: 100px;
+}
+
+.todo-task{
+  padding: 10px 10px;
+  background-color: aliceblue;
+  border: 7px solid #B6C9FF;
+  border-radius: 40px 10px;
+  margin: 10px 30px;
+}
+
+.button-group{
+  padding: 2px;
+}
+.prioritize-btn-beforePressed, .delete-btn, .edit-btn{
+  margin-right: 15px;
+  border-radius: 5px;
+}
+.prioritize-btn-afterPressed{
+  background-color: #0404ff46;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.taskInfo, .detailSection {
+  margin: 0px 0px 15px 0px
+}
+
+.filterSection{
+  text-align: center;
+}
+
+header{
+  font-family: Helvetica, sans-serif;
+  text-align: left;
+  color: #7E7DFF;
+  text-decoration: #7E7DFF underline;
+  padding-left: 10%;
+}
+
+body{
+  background-color: cornsilk;
+  
+}
+img{
+  width: 90px;
+  height: 90px;
+  float: left;
+
+}
+
+button:hover{
+  background-color: #7c7cff;
+}
+
+button:active{
+  outline: thick;
+}
+
+input:focus{
+  background-color: #F2FFFE;
 }
