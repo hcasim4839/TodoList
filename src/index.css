@@ -87,3 +87,6 @@ button:active{
 input:focus{
   background-color: #F2FFFE;
 }
+listOfTasks{
+   font-size: 50px;
+}

@@ -18,13 +18,10 @@ function App(props) {
       setTasks([...tasks, NEW_TASK]);
     }
   }
-
   function deleteTask(TododTaskId) {
     const REMAINING_TASKS = tasks.filter((task) => task.id !== TododTaskId);
     setTasks(REMAINING_TASKS);
   }
-
-
   function prioritizeBtnClicked(TodoTaskId, isPrioritized) {
     let elementToSwitch;
     let i = 0;
@@ -37,12 +34,10 @@ function App(props) {
     });
     swapIndices(elementToSwitch, isPrioritized, TodoTaskId);
   }
-
   function swapIndices(elementToSwitch, isPrioritized, TodoTaskId) {
     const ARRAY_LAST_INDEX = tasks.length - 1;
 
     if (isPrioritized) {
-
       tasks[elementToSwitch].isPriority = false;
 
       const NEW_LAST_UNPRIORITIZED_INDEX = lastUnprioritizedTaskIndex - 1;
@@ -53,7 +48,6 @@ function App(props) {
 
     } else if (isPrioritized === false) {
       if (lastUnprioritizedTaskIndex <= ARRAY_LAST_INDEX) {
-
         tasks[elementToSwitch].isPriority = true;
 
         const OTHER_ELEMENT_TO_SWITCH = tasks[lastUnprioritizedTaskIndex];
@@ -66,15 +60,20 @@ function App(props) {
   }
 
   function showCompletedTasks() {
-    const LIST_OF_TASKS = tasks;
-    settasksWithNoFilter(LIST_OF_TASKS);
+    if (tasks.length > 0) {
+      const LIST_OF_TASKS = tasks;
+      settasksWithNoFilter(LIST_OF_TASKS);
+    }
     const UPDATED_TASKS = tasks.filter((task) => task.completed === true);
     setTasks(UPDATED_TASKS);
   }
 
   function showPrioritizedTasks() {
-    const LIST_OF_TASKS = tasks;
-    settasksWithNoFilter(LIST_OF_TASKS);
+    if (tasks.length > 0) {
+      const LIST_OF_TASKS = tasks;
+      settasksWithNoFilter(LIST_OF_TASKS);
+    }
+
     const UPDATED_TASKS = tasks.filter((task) => task.isPriority === true);
     setTasks(UPDATED_TASKS);
   }

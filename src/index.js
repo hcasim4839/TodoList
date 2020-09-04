@@ -8,12 +8,14 @@ const TASK_EXAMPLES = [{
   id: "todo-" + nanoid(),
   name: "Sleep",
   completed: false,
-  details: " Go to sleep."
+  details: " Go to sleep.",
+  isPriority: false
 }, {
   id: "todo-" + nanoid(),
   name: "Eat",
   completed: false,
-  details: "At 6pm."
+  details: "At 6pm.",
+  isPriority: false
 }]
 
 
