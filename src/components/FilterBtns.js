@@ -6,19 +6,27 @@ function FilterBtns(props) {
 
     function completeTask() {
         props.showCompletedTasks();
-        setComplTaskIsDisabled(true);
-        setPrioritizeTaskIsDisabled(true);
+        turnOffFilterBtns();
     }
+
     function prioritizeTask() {
         props.showPrioritizedTasks();
+        turnOffFilterBtns();
+    }
+
+    function turnOffFilter() {
+        props.turnOffFilter();
+        turnOnFilterBtns();
+    }
+
+    function turnOffFilterBtns() {
         setPrioritizeTaskIsDisabled(true);
         setComplTaskIsDisabled(true);
     }
-    function turnOffFilter() {
-        props.turnOffFilter();
+
+    function turnOnFilterBtns() {
         setComplTaskIsDisabled(false);
         setPrioritizeTaskIsDisabled(false);
-
     }
     return (
         <div className="filterSection" >
