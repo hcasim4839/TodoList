@@ -34,7 +34,7 @@ function ListItemAddeeSection(props) {
                     value={value}
                 />
                 <div>
-                    <label id="detailSection" htmlFor="listItemDetailsToAdd">Detail for the task: </label>
+                    <label id="detailSection" htmlFor="listItemDetailsToAdd">Details for the task: </label>
                     <input
                         id="listItemDetailsToAdd"
                         type="text"
@@ -42,10 +42,7 @@ function ListItemAddeeSection(props) {
                         value={detailValue}
                     ></input>
                 </div>
-
-
             </div>
-
             <button type="submit" id="add-btn">Add</button>
         </form>
     );

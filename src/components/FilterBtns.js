@@ -30,7 +30,7 @@ function FilterBtns(props) {
     }
     return (
         <div className="filterSection" >
-            <h2 id="subheading">Filter Button</h2>
+            <h2 id="subheading">Filter Buttons</h2>
             <button onClick={completeTask} disabled={complTaskIsDisabled}>Completed Tasks</button>
             <button onClick={prioritizeTask} disabled={prioritizeTaskIsDisabled}>Prioritized Tasks</button>
             <button onClick={turnOffFilter}>Show All Tasks</button>
