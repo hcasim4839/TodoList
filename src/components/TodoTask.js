@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 function TodoTask(props) {
     const [isPrioritized, setIsPrioritized] = useState(false);
-
-
     function prioritizeBtnClicked() {
         if (isPrioritized === false) {
             setIsPrioritized(true);
@@ -14,7 +12,7 @@ function TodoTask(props) {
     }
 
     return (
-        <li className="todo-task" aria-checked="false"  >
+        <li className={props.isVisible === true ? "todo-task" : "todo-task-invisible"} aria-checked="false"  >
             <input type="checkbox" id={props.id} onChange={() => props.toggleTaskCompleted(props.id)} defaultChecked={props.completed} />
             <label id={props.id}>{props.name}</label>
             <p>{props.details}</p>

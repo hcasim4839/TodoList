@@ -5,16 +5,24 @@ import logo from "./img/journal.png";
 import { nanoid } from "nanoid";
 import FilterBtns from './components/FilterBtns';
 
+
 function App(props) {
   const [tasks, setTasks] = useState(props.task);
+  //const [tasksWithNoFilter, settasksWithNoFilter] = useState();
   const [lastUnprioritizedTaskIndex, setlastUnprioritizedTaskIndex] = useState(0);
-  const [tasksWithNoFilter, settasksWithNoFilter] = useState(props.task);
 
 
   //FUNCTIONS
   function addTask(name, details) {
     if (name.trim() !== "" && name !== null) {
-      const NEW_TASK = { name: name, id: "todo-" + nanoid(), completed: false, details: details, isPriority: false }
+      const NEW_TASK = {
+        name: name,
+        id: "todo-" + nanoid(),
+        completed: false,
+        details: details,
+        isPriority: false,
+        isVisible: true
+      }
       setTasks([...tasks, NEW_TASK]);
     }
   }
@@ -60,15 +68,25 @@ function App(props) {
   }
 
   function showCompletedTasks() {
-    if (tasks.length > 0) {
-      const LIST_OF_TASKS = tasks;
-      settasksWithNoFilter(LIST_OF_TASKS);
-    }
-    const UPDATED_TASKS = tasks.filter((task) => task.completed === true);
-    setTasks(UPDATED_TASKS);
+    /*
+        if (tasks.length > 0) {
+          const LIST_OF_TASKS = tasks;
+          settasksWithNoFilter(LIST_OF_TASKS);
+        }
+        const UPDATED_TASKS = tasks.filter((task) => task.completed === true);
+        setTasks(UPDATED_TASKS);
+    */
+
+    tasks.forEach(element => {
+      console.log(element);
+      if (element.completed === false) {
+        element.isVisible = false;
+      }
+    });
   }
 
   function showPrioritizedTasks() {
+    /*
     if (tasks.length > 0) {
       const LIST_OF_TASKS = tasks;
       settasksWithNoFilter(LIST_OF_TASKS);
@@ -76,11 +94,25 @@ function App(props) {
 
     const UPDATED_TASKS = tasks.filter((task) => task.isPriority === true);
     setTasks(UPDATED_TASKS);
+    */
+
+    tasks.forEach(element => {
+      console.log(element);
+      if (element.isPriority === false) {
+        element.isVisible = false;
+      }
+    });
   }
 
   function turnOffFilter() {
-    const UPDATED_TASKS = tasksWithNoFilter;
-    setTasks(UPDATED_TASKS);
+    /*const UPDATED_TASKS = tasksWithNoFilter;
+    setTasks(UPDATED_TASKS);*/
+    tasks.forEach(element => {
+      console.log(element);
+      if (element.isVisible === false) {
+        element.isVisible = true;
+      }
+    });
   }
 
   function toggleTaskCompleted(id) {
@@ -97,6 +129,7 @@ function App(props) {
     <TodoTask
       name={task.name}
       id={task.id}
+      isVisible={task.isVisible}
       toggleTaskCompleted={toggleTaskCompleted}
       completed={task.completed}
       details={task.details}
@@ -127,6 +160,7 @@ function App(props) {
           <div id="todoTasks">
 
             {TASK_LIST}
+
           </div>
         </ul>
       </div>
