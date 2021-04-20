@@ -1,0 +1,4 @@
+issue: when i click the checkbox of a task after completed task filterbtn is clicked and go to show all tasks
+everything is fine but then when i click completed task the task that should be uncomplete is still complete!
+
+weird reactions after completed tasks is clicked

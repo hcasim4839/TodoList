@@ -5,19 +5,25 @@ import App from './App';
 import { nanoid } from "nanoid";
 
 const TASK_EXAMPLES = [{
-  id: "todo-" + nanoid(),
   name: "Sleep",
+  id: "todo-Demo1" + nanoid(),
+  isVisible: true,
+
   completed: false,
   details: " Go to sleep.",
+
+
   isPriority: false,
-  isVisible: true
+  // key: "list item demo" + 1
 }, {
-  id: "todo-" + nanoid(),
   name: "Eat",
+  id: "todoDemo2-" + nanoid(),
+  isVisible: true,
+
   completed: false,
   details: "At 6pm.",
   isPriority: false,
-  isVisible: true
+  //key: "list item demo" + 2
 }]
 
 

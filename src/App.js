@@ -5,35 +5,67 @@ import logo from "./img/journal.png";
 import { nanoid } from "nanoid";
 import FilterBtns from './components/FilterBtns';
 
+//what is interesting is if the ()=> is removed there is an error as
+//it has no idea what the task is so you need an arguement
+const FILTER_OBJ = {
+  All: () => true,
+  Prioritized: (task) => task.isPriority,
+  Completed: (task) => task.completed
+}
+
+const FILTER_NAMES = Object.keys(FILTER_OBJ);
 
 function App(props) {
   const [tasks, setTasks] = useState(props.task);
-  //const [tasksWithNoFilter, settasksWithNoFilter] = useState();
   const [lastUnprioritizedTaskIndex, setlastUnprioritizedTaskIndex] = useState(0);
+  const [currentFilter, setCurrentFilter] = useState('All');
 
-
-  //FUNCTIONS
+  //reminder to look at map vs foreach
+  const filterBtnsList = FILTER_NAMES.map(name =>
+    <FilterBtns
+      name={name}
+      setCurrentFilter={setCurrentFilter}
+      key={nanoid()}
+    />
+  );
   function addTask(name, details) {
     if (name.trim() !== "" && name !== null) {
       const NEW_TASK = {
         name: name,
         id: "todo-" + nanoid(),
-        completed: false,
+        isCompleted: false,
         details: details,
         isPriority: false,
-        isVisible: true
       }
       setTasks([...tasks, NEW_TASK]);
     }
+    console.log(name + " and the dets: " + details);
+  }
+
+
+  function toggleTaskCompleted(id) {
+    const editedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.completed = !task.completed;
+        return task;
+      }
+      return task;
+    });
+    setTasks(editedTasks);
+
   }
   function deleteTask(TododTaskId) {
     const REMAINING_TASKS = tasks.filter((task) => task.id !== TododTaskId);
+    console.log(TododTaskId);
     setTasks(REMAINING_TASKS);
+    //for some reason if the below is used it removes all tasks after those tasks are prio
+    //settasksWithNoFilter(REMAINING_TASKS);
   }
   function prioritizeBtnClicked(TodoTaskId, isPrioritized) {
+
     let elementToSwitch;
     let i = 0;
-
+    //Err why is there an incrementation to i?
     tasks.forEach(element => {
       if (element.id === TodoTaskId) {
         elementToSwitch = i;
@@ -67,79 +99,22 @@ function App(props) {
     }
   }
 
-  function showCompletedTasks() {
-    /*
-        if (tasks.length > 0) {
-          const LIST_OF_TASKS = tasks;
-          settasksWithNoFilter(LIST_OF_TASKS);
-        }
-        const UPDATED_TASKS = tasks.filter((task) => task.completed === true);
-        setTasks(UPDATED_TASKS);
-    */
+  const TASK_LIST = tasks
+    .filter(FILTER_OBJ[currentFilter])
+    .map(task => (
+      <TodoTask
+        id={task.id}
+        name={task.name}
+        details={task.details}
+        completed={task.completed}
+        key={task.id}
+        toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
+        prioritizeBtnClicked={prioritizeBtnClicked}
 
-    tasks.forEach(element => {
-      console.log(element);
-      if (element.completed === false) {
-        element.isVisible = false;
-      }
-    });
-  }
-
-  function showPrioritizedTasks() {
-    /*
-    if (tasks.length > 0) {
-      const LIST_OF_TASKS = tasks;
-      settasksWithNoFilter(LIST_OF_TASKS);
-    }
-
-    const UPDATED_TASKS = tasks.filter((task) => task.isPriority === true);
-    setTasks(UPDATED_TASKS);
-    */
-
-    tasks.forEach(element => {
-      console.log(element);
-      if (element.isPriority === false) {
-        element.isVisible = false;
-      }
-    });
-  }
-
-  function turnOffFilter() {
-    /*const UPDATED_TASKS = tasksWithNoFilter;
-    setTasks(UPDATED_TASKS);*/
-    tasks.forEach(element => {
-      console.log(element);
-      if (element.isVisible === false) {
-        element.isVisible = true;
-      }
-    });
-  }
-
-  function toggleTaskCompleted(id) {
-    const UPDATED_TASK = tasks.map(task => {
-      if (id === task.id) {
-        return { ...task, completed: !task.completed }
-      }
-      return task;
-    });
-    setTasks(UPDATED_TASK);
-  }
-
-  const TASK_LIST = tasks.map(task =>
-    <TodoTask
-      name={task.name}
-      id={task.id}
-      isVisible={task.isVisible}
-      toggleTaskCompleted={toggleTaskCompleted}
-      completed={task.completed}
-      details={task.details}
-      deleteTask={deleteTask}
-      prioritizeBtnClicked={prioritizeBtnClicked}
-      isPriority={task.isPriority}
-      key={"list item " + task.id}
-
-    >
-    </TodoTask>);
+        isPriority={task.isPriority}
+      />
+    ));
 
   return (
     <div className="todoApp">
@@ -150,11 +125,11 @@ function App(props) {
         <h1>Todo App</h1>
       </header>
       <ListItemAddeeSection addTask={addTask}></ListItemAddeeSection>
-      <FilterBtns
-        showCompletedTasks={showCompletedTasks}
-        showPrioritizedTasks={showPrioritizedTasks}
-        turnOffFilter={turnOffFilter}
-      ></FilterBtns>
+      <div id="filterSection" >
+        <h2 id="subheading">Filter Buttons</h2>
+        {filterBtnsList}
+      </div>
+
       <div id="todoList">
         <ul>
           <div id="todoTasks">
